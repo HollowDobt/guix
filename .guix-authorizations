@@ -1,5 +1,5 @@
 ;; -*- mode: scheme; -*-
-;; hollow <i@hollow.ink>
+;; Copyright (c) 2026 hollow <i@hollow.ink>
 
 (authorizations (version 0)
                 ( ;; List of authorized public GPG key rings

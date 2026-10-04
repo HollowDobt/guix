@@ -1,5 +1,5 @@
 ;; -*- mode: scheme; -*-
-;; hollow <i@hollow.ink>
+;; Copyright (c) 2026 hollow <i@hollow.ink>
 
 (channel-news
   (version 0))
