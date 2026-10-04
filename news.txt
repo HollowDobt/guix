@@ -1,0 +1,5 @@
+;; -*- mode: scheme; -*-
+;; hollow <i@hollow.ink>
+
+(channel-news
+  (version 0))

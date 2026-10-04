@@ -1,0 +1,6 @@
+;; -*- mode: scheme; -*-
+;; hollow <i@hollow.ink>
+
+(channel (version 0) 
+         (directory "modules")
+         (news-file "news.txt"))

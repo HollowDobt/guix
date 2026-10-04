@@ -1,0 +1,6 @@
+;; -*- mode: scheme; -*-
+;; hollow <i@hollow.ink>
+
+(authorizations (version 0)
+                ( ;; List of authorized public GPG key rings
+                  ("143A 0106 4582 B4DC 27CE  15BB 90CC EC5F 3ABC 5F6C"  (name "hollow"))))
