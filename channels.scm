@@ -1,8 +1,6 @@
 ;; -*- mode: scheme; -*-
 ;; Copyright (c) 2026 hollow <i@hollow.ink>
 
-(use-modules (guix channels))
-
 ;; `hollow` is the config channel, while default channel supports packages sources
 (cons (channel (name 'hollow)
                (url "https://github.com/HollowDobt/guix.git")
