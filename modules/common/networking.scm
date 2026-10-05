@@ -3,7 +3,7 @@
 
 (define-module (common networking)
   ;; IMPORT
-  #:use-module (gnu packages linux)
+  #:use-module (gnu packages networking)
   #:use-module (gnu services)
   #:use-module (gnu services networking)
   ;; EXPORT
