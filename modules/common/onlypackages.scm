@@ -4,10 +4,16 @@
 (define-module (common onlypackages)
   ;; IMPORT
   #:use-module (gnu packages admin)
+  #:use-module (gnu packages bash)
+  #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages less)
   #:use-module (gnu packages ncurses)
+  #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages vim)
+  #:use-module (gnu packages web)
+  #:use-module (gnu packages zip)
   ;; EXPORT
   #:export (%packages))
 
