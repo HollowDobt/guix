@@ -6,7 +6,7 @@
 ;; automatically import modules in need.
 (define-module (machines init)
   ;; IMPORT
-  #:use-module (common init)
+  #:use-module ((common init) #:prefix common:)
   ;; EXPORT
   #:export (machine-system))
 
@@ -16,7 +16,7 @@
   (let* ((name (string->symbol (string-downcase machine)))
          (module-name `(machines ,name init))
          (module (resolve-interface module-name)))
-    (make-system
+    (common:make-system
      (module-ref module '%host-name)
      (module-ref module '%packages)
      (module-ref module '%services))))
