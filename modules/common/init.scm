@@ -13,12 +13,14 @@
   #:use-module (gnu services base)
   #:use-module (guix gexp)
 
+  #:use-module ((common onlypackages) #:prefix onlypackages:)
   #:use-module ((common networking) #:prefix networking:)
   #:use-module ((common ssh) #:prefix ssh:)
   ;; EXPORT
   #:export (%packages %services make-system))
 
 (define %packages (append
+                    onlypackages:%packages
                     networking:%packages
                     ssh:%packages))
 
