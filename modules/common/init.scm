@@ -10,6 +10,7 @@
   ;; IMPORT
   #:use-module (gnu)
   #:use-module (gnu bootloader grub)
+  #:use-module (gnu services base)
   #:use-module (guix gexp)
 
   #:use-module ((common networking) #:prefix networking:)
@@ -40,34 +41,29 @@
     ;; AGAIN WARNING
     ;; - Label `BOOT` -> `/boot`
     ;; - Label `GUIX` -> `/` 
-    (file-systems (append 
-                    (list
-                      (file-system
-                        (mount-point "/")
-                        (device (file-system-label "GUIX"))
-                        (type "ext4")) ; `ext4` is enough for GUIX
-                      
-                      (file-system
-                        (mount-point "/boot")
-                        (device (file-system-label "BOOT"))
-                        (type "vfat")))
-                      
-                      %base-file-systems))
+    (file-systems (cons*
+                    (file-system
+                      (mount-point "/")
+                      (device (file-system-label "GUIX"))
+                      (type "ext4")) ; `ext4` is enough for GUIX
+                    (file-system
+                      (mount-point "/boot")
+                      (device (file-system-label "BOOT"))
+                      (type "vfat"))
+                    %base-file-systems))
 
     ;; administrator account config : "hollow"                 
-    (users (append (list
-                     (user-account
-                       (name "hollow")
-                       (comment "")
-                       (group "users")
-                       (supplementary-groups '("wheel"))))
-                       
-                      %base-user-accounts))
+    (users (cons*
+             (user-account
+               (name "hollow")
+               (comment "administrator")
+               (group "users")
+               (supplementary-groups '("wheel")))
+             %base-user-accounts))
 
-    (sudoers-file
-      (plain-file
-        "sudoers"
-        "root ALL=(ALL) ALL\n%wheel ALL=(ALL) ALL\n"))
+    (sudoers-file (plain-file 
+                    "sudoers"
+                    "root ALL=(ALL) ALL\n%wheel ALL=(ALL) ALL\n"))
         
     (packages
       (append
@@ -75,8 +71,10 @@
         %packages
         %base-packages))
         
-    (services
-      (append
-        machine-services
-        %services
-        %base-services))))
+    (services (modify-services
+                (append machine-services %services %base-services)
+                (guix-service-type config => (guix-configuration
+                                               (inherit config)
+                                               ;; Use SJTU Mirror as the only substitute server.
+                                               (substitute-urls
+                                                 '("https://mirror.sjtu.edu.cn/guix"))))))))
