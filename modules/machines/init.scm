@@ -4,7 +4,7 @@
 ;; Although only `common init` are imported here,
 ;; `resolve-interface` in function `machine-system`could
 ;; automatically import modules in need.
-(define-module (machine init)
+(define-module (machines init)
   ;; IMPORT
   #:use-module (common init)
   ;; EXPORT
@@ -14,8 +14,9 @@
 ;; `machines {new machine name(CAPITAL)} init`
 (define (machine-system machine)
   (let* ((name (string->symbol (string-downcase machine)))
-         (module (resolve-interface `(machines ,name init))))
+         (module-name `(machines ,name init))
+         (module (resolve-interface module-name)))
     (make-system
-      (module-ref module '%host-name)
-      (module-ref module '%packages)
-      (module-ref module '%services))))
+     (module-ref module '%host-name)
+     (module-ref module '%packages)
+     (module-ref module '%services))))

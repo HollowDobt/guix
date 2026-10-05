@@ -50,9 +50,9 @@
                       (file-system
                         (mount-point "/boot")
                         (device (file-system-label "BOOT"))
-                        (type "vfat"))
+                        (type "vfat")))
                       
-                      $base-file-systems)))
+                      %base-file-systems))
 
     ;; administrator account config : "hollow"                 
     (users (append (list
