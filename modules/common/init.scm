@@ -16,17 +16,20 @@
   #:use-module ((common onlypackages) #:prefix onlypackages:)
   #:use-module ((common networking) #:prefix networking:)
   #:use-module ((common ssh) #:prefix ssh:)
+  #:use-module ((common vim) #:prefix vim:)
   ;; EXPORT
   #:export (%packages %services make-system))
 
 (define %packages (append
                     onlypackages:%packages
                     networking:%packages
-                    ssh:%packages))
+                    ssh:%packages
+                    vim:%packages))
 
 (define %services (append
                     networking:%services
-                    ssh:%services))
+                    ssh:%services
+                    vim:%services))
 
 (define (make-system host-name machine-packages machine-services)
 
@@ -72,12 +75,14 @@
         machine-packages
         %packages
         %base-packages))
-        
+
     (services (modify-services
                 (append machine-services %services %base-services)
                 (guix-service-type config => (guix-configuration
                                                (inherit config)
-                                               ;; Use SJTU Mirror as the only substitute server.
+                                               ;; NOT use SJTU Mirror as the only substitute server.
+                                               ;; FOR avoid compiling sources locally.
+                                               ;; FOR `gnu.org` provides compilation caches.
                                                (substitute-urls
                                                  '("https://mirror.sjtu.edu.cn/guix"
                                                    "https://bordeaux.guix.gnu.org"

@@ -11,7 +11,6 @@
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages version-control)
-  #:use-module (gnu packages vim)
   #:use-module (gnu packages web)
   ;; EXPORT
   #:export (%packages))
@@ -19,15 +18,14 @@
 (define %packages (list
                     git
                     curl
-                    fastfetch-minimal
+                    fastfetch-minimal ; avoid zfs and other dependencies
                     btop
                     ncurses ; basic packages, supports `clear` and other basic commands.
-                    vim
                     bash-completion
                     tree
                     ripgrep
-                    less ; stream-style file reader
-                    jq ; json beautify
+                    less ; stream-style file reader (avoid load large file into RAM)
+                    jq ; json-format
                     zip
                     unzip
                     zstd))
