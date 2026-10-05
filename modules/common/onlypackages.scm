@@ -13,7 +13,6 @@
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages vim)
   #:use-module (gnu packages web)
-  #:use-module (gnu packages zip)
   ;; EXPORT
   #:export (%packages))
 
