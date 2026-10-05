@@ -19,7 +19,7 @@
 (define %packages (list
                     git
                     curl
-                    fastfetch
+                    fastfetch-minimal
                     btop
                     ncurses ; basic packages, supports `clear` and other basic commands.
                     vim
