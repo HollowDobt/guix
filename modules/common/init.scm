@@ -79,4 +79,6 @@
                                                (inherit config)
                                                ;; Use SJTU Mirror as the only substitute server.
                                                (substitute-urls
-                                                 '("https://mirror.sjtu.edu.cn/guix"))))))))
+                                                 '("https://mirror.sjtu.edu.cn/guix"
+                                                   "https://bordeaux.guix.gnu.org"
+                                                   "https://ci.guix.gnu.org"))))))))
