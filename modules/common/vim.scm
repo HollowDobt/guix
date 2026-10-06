@@ -14,4 +14,4 @@
 
 (define %services
   (list
-    (extra-special-file "/home/hollow/.vimrc" (local-file "vimrc")))))
+    (extra-special-file "/home/hollow/.vimrc" (local-file "vimrc"))))
