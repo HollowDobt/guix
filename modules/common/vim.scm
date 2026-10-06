@@ -4,7 +4,6 @@
 (define-module (common vim)
   ;; IMPORT
   #:use-module (gnu packages vim)
-  #:use-module (gnu home services)
   #:use-module (gnu services)
   #:use-module (guix gexp)
   ;; EXPORT
@@ -15,7 +14,6 @@
 
 (define %services
   (list
-    (simple-service
-      'vim-config
-      home-files-service-type
-      `((".vimrc" ,(local-file "vimrc"))))))
+    (extra-special-file
+      "/home/hollow/.vimrc"
+      (local-file "vimrc")))))
