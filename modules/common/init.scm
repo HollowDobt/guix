@@ -11,14 +11,13 @@
   #:use-module (gnu)
   #:use-module (gnu bootloader grub)
   #:use-module (gnu services base)
-  #:use-module (guix gexp)
 
   #:use-module ((common onlypackages) #:prefix onlypackages:)
   #:use-module ((common networking) #:prefix networking:)
   #:use-module ((common ssh) #:prefix ssh:)
   #:use-module ((common vim) #:prefix vim:)
   ;; EXPORT
-  #:export (%packages %services make-system))
+  #:export (make-system))
 
 (define %packages (append
                     onlypackages:%packages
@@ -58,17 +57,13 @@
                     %base-file-systems))
 
     ;; administrator account config : "hollow"                 
-    (users (cons*
+    (users (cons
              (user-account
                (name "hollow")
                (comment "administrator")
                (group "users")
                (supplementary-groups '("wheel")))
              %base-user-accounts))
-
-    (sudoers-file (plain-file 
-                    "sudoers"
-                    "root ALL=(ALL) ALL\n%wheel ALL=(ALL) ALL\n"))
         
     (packages
       (append
@@ -84,6 +79,5 @@
                                                ;; FOR avoid compiling sources locally.
                                                ;; FOR `gnu.org` provides compilation caches.
                                                (substitute-urls
-                                                 '("https://mirror.sjtu.edu.cn/guix"
-                                                   "https://bordeaux.guix.gnu.org"
-                                                   "https://ci.guix.gnu.org"))))))))
+                                                 (cons "https://mirror.sjtu.edu.cn/guix"
+                                                       %default-substitute-urls))))))))

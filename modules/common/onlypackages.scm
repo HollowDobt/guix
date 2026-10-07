@@ -7,7 +7,6 @@
   #:use-module (gnu packages bash)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
-  #:use-module (gnu packages less)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages version-control)
@@ -24,8 +23,6 @@
                     bash-completion
                     tree
                     ripgrep
-                    less ; stream-style file reader (avoid load large file into RAM)
                     jq ; json-format
                     zip
-                    unzip
-                    zstd))
+                    unzip))
