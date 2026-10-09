@@ -6,12 +6,14 @@
 ;; - Label `BOOT` -> `/boot`
 ;; - Label `GUIX` -> `/` 
 
-(define-module (common init)
+(define-module (common system)
   ;; IMPORT
   #:use-module (gnu)
   #:use-module (gnu bootloader grub)
   #:use-module (gnu services base)
+  #:use-module (gnu services guix)
 
+  #:use-module ((common home) #:prefix home:)
   #:use-module ((common onlypackages) #:prefix onlypackages:)
   #:use-module ((common networking) #:prefix networking:)
   #:use-module ((common ssh) #:prefix ssh:)
@@ -25,10 +27,12 @@
                     ssh:%packages
                     vim:%packages))
 
-(define %services (append
-                    networking:%services
-                    ssh:%services
-                    vim:%services))
+(define %services
+  (append networking:%services
+          ssh:%services
+          (list
+            (service guix-home-service-type
+              `(("hollow" ,home:%home))))))
 
 (define (make-system host-name machine-packages machine-services)
 

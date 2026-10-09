@@ -2,16 +2,15 @@
 ;; Copyright (c) 2026 hollow <i@hollow.ink>
 
 (define-module (common vim init)
-  ;; IMPORT
   #:use-module (gnu packages vim)
+  #:use-module (gnu home services)
   #:use-module (gnu services)
   #:use-module (guix gexp)
-  ;; EXPORT
-  #:export (%packages
-            %services))
+  #:export (%packages %home-services))
 
 (define %packages (list vim))
 
-(define %services
-  (list
-    (extra-special-file "/home/hollow/.vimrc" (local-file "vimrc"))))
+(define %home-services (list (simple-service
+                               'vim-config
+                               home-files-service-type
+                               `((".vimrc" ,(local-file "vimrc"))))))
