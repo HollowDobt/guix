@@ -4,4 +4,4 @@
 (use-modules (machines init))
 
 ;; change `WORKER01` to any node name in need
-(machine-system "WORKER01")
+(machine-system (or (getenv "GUIX_MACHINE") (gethostname)))
