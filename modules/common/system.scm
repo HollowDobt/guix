@@ -12,6 +12,7 @@
   #:use-module (gnu bootloader grub)
   #:use-module (gnu services base)
   #:use-module (gnu services guix)
+  #:use-module (gnu services desktop)
 
   #:use-module ((common home) #:prefix home:)
   #:use-module ((common onlypackages) #:prefix onlypackages:)
@@ -31,6 +32,7 @@
   (append networking:%services
           ssh:%services
           (list
+            (service elogind-service-type)
             (service guix-home-service-type
               `(("hollow" ,home:%home))))))
 
