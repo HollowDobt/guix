@@ -15,7 +15,7 @@
   #:use-module ((common onlypackages) #:prefix onlypackages:)
   #:use-module ((common networking) #:prefix networking:)
   #:use-module ((common ssh) #:prefix ssh:)
-  #:use-module ((common vim) #:prefix vim:)
+  #:use-module ((common vim init) #:prefix vim:)
   ;; EXPORT
   #:export (make-system))
 

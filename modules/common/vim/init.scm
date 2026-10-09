@@ -1,7 +1,7 @@
 ;; -*- mode: scheme; -*-
 ;; Copyright (c) 2026 hollow <i@hollow.ink>
 
-(define-module (common vim)
+(define-module (common vim init)
   ;; IMPORT
   #:use-module (gnu packages vim)
   #:use-module (gnu services)
