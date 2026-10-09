@@ -18,9 +18,7 @@
 (define %home (getenv "HOME"))
 (unless %home (error "HOME is unset"))
 (define %guix (string-append %home "/.config/guix/current/bin/guix"))
-(unless (file-exists? %guix)
-  (error "Guix executable not found" %guix))
+(unless (file-exists? %guix) (error "Guix executable not found" %guix))
 
 ;; The system's guix-home-service-type also deploys the home environment.
-(run "sudo" %guix "system" "reconfigure"
-     "-L" "modules" "config.scm")
+(run "sudo" %guix "system" "reconfigure" "-L" "modules" "config.scm")
